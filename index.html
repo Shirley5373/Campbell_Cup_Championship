@@ -39,6 +39,16 @@
       padding-bottom: 100px;
       text-align: center;
     }
+    table {
+      color: #FFD700;
+    }
+    th, td {
+      border: 1px solid #FFD700;
+      padding: 5px 10px;
+    }
+    th {
+      background-color: #222;
+    }
   </style>
 </head>
 <body>
@@ -66,11 +76,48 @@
         <p>The ultimate fantasy football battleground. Honor. Glory. Data.</p>
       </div>
     </div>
-    <div class="tab-pane fade" id="schedule">Schedule coming soon</div>
-    <div class="tab-pane fade" id="standings">Standings coming soon</div>
-    <div class="tab-pane fade" id="rosters">Rosters coming soon</div>
-    <div class="tab-pane fade" id="mvp">MVP stats coming soon</div>
+
+    <div class="tab-pane fade" id="schedule">
+      <h2>Schedule – Week 1</h2>
+      <table class="table table-bordered">
+        <thead><tr><th>Team</th><th>Points</th><th>Opponent</th><th>Points</th></tr></thead>
+        <tbody>
+          <tr><td>TP</td><td>106.4</td><td>AH</td><td>76.7</td></tr>
+          <tr><td>JW</td><td>66.1</td><td>BL</td><td>75.8</td></tr>
+          <tr><td>BM</td><td>79.4</td><td>AO</td><td>76.9</td></tr>
+          <tr><td>GW</td><td>58.3</td><td>ES</td><td>53.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="standings">
+      <h2>Standings – Top 5</h2>
+      <table class="table table-bordered">
+        <thead><tr><th>Rank</th><th>Team</th><th>Owner</th><th>Wins</th><th>Losses</th><th>Win %</th><th>Points For</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>GW</td><td>Greg Ward</td><td>9</td><td>5</td><td>0.643</td><td>956.3</td></tr>
+          <tr><td>2</td><td>DV</td><td>Daryoush Vafa</td><td>10</td><td>4</td><td>0.714</td><td>956.3</td></tr>
+          <tr><td>3</td><td>TP</td><td>Tom Pusateri</td><td>9</td><td>5</td><td>0.679</td><td>994.3</td></tr>
+          <tr><td>4</td><td>AH</td><td>Alex Harris</td><td>8</td><td>6</td><td>0.571</td><td>900.2</td></tr>
+          <tr><td>5</td><td>BM</td><td>Ben M.</td><td>8</td><td>6</td><td>0.571</td><td>889.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="mvp">
+      <h2>MVPs – Quarterbacks (Top 3)</h2>
+      <table class="table table-bordered">
+        <thead><tr><th>Week</th><th>Player</th><th>PTS</th><th>AVG</th><th>DIF</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Baker Mayfield</td><td>37.7</td><td>20.23</td><td>17.47</td></tr>
+          <tr><td>2</td><td>Daniel Jones</td><td>22.3</td><td>13.44</td><td>8.86</td></tr>
+          <tr><td>3</td><td>Dak Prescott</td><td>33.9</td><td>20.30</td><td>13.60</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="tab-pane fade" id="lvp">LVP stats coming soon</div>
+    <div class="tab-pane fade" id="rosters">Rosters coming soon</div>
     <div class="tab-pane fade" id="stats">Stats coming soon</div>
     <div class="tab-pane fade" id="players">Players coming soon</div>
   </div>

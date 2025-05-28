@@ -147,7 +147,20 @@ background:
         <p>The Ultimate Fantasy Football Battleground. Honor. Glory. History.</p>
       </div>
     </div>
-    <div class="tab-pane fade" id="schedule">Schedule coming soon</div>
+    <div class="tab-pane fade show" id="schedule">
+  <div class="container py-4">
+    <h2 class="mb-4">Weekly Matchups</h2>
+    <div class="mb-3">
+      <label for="weekSelect" class="form-label">Select Week:</label>
+      <select class="form-select" id="weekSelect">
+        <option selected disabled>Choose week</option>
+        <!-- JavaScript will populate this -->
+      </select>
+    </div>
+    <div id="matchupList" class="mt-4"></div>
+  </div>
+</div>
+
     <div class="tab-pane fade" id="standings">Standings coming soon</div>
     <div class="tab-pane fade" id="rosters">Rosters coming soon</div>
     <div class="tab-pane fade" id="mvp">MVP stats coming soon</div>
@@ -183,5 +196,44 @@ background:
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const weekSelect = document.getElementById("weekSelect");
+  const matchupList = document.getElementById("matchupList");
+
+  fetch("schedule.json")
+    .then(res => res.json())
+    .then(schedule => {
+      const weeks = Object.keys(schedule);
+      weeks.forEach(week => {
+        const option = document.createElement("option");
+        option.value = week;
+        option.textContent = week;
+        weekSelect.appendChild(option);
+      });
+
+      weekSelect.addEventListener("change", () => {
+        const selectedWeek = weekSelect.value;
+        const matchups = schedule[selectedWeek];
+        matchupList.innerHTML = "";
+
+        matchups.forEach(([team1, team2]) => {
+          const row = document.createElement("div");
+          row.className = "d-flex justify-content-between border-bottom py-2";
+          row.innerHTML = `
+            <a href="team.html?id=${team1}" class="text-warning text-decoration-none">${team1}</a>
+            <span>vs</span>
+            <a href="team.html?id=${team2}" class="text-warning text-decoration-none">${team2}</a>
+          `;
+          matchupList.appendChild(row);
+        });
+      });
+    })
+    .catch(err => {
+      matchupList.innerHTML = "<p class='text-danger'>Failed to load schedule.</p>";
+      console.error(err);
+    });
+});
+</script>
 </body>
 </html>

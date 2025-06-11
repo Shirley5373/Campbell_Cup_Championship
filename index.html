@@ -172,7 +172,43 @@ background:
   </div>
 </div>
 
-    <div class="tab-pane fade" id="standings">Standings coming soon</div>
+    <div class="tab-pane fade" id="standings">
+  <div class="container py-4">
+    <h2 class="mb-4">Standings</h2>
+    <ul class="nav nav-pills mb-3" id="standings-tabs">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#afc-table">AFC</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#nfc-table">NFC</button></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="afc-table">
+        <table class="table table-striped table-bordered text-light" id="afcStandings">
+          <thead>
+            <tr>
+              <th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th><th>Streak</th>
+              <th>Exp W</th><th>Exp L</th><th>Exp PCT</th>
+              <th>PF</th><th>PA</th><th>Diff</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="nfc-table">
+        <table class="table table-striped table-bordered text-light" id="nfcStandings">
+          <thead>
+            <tr>
+              <th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th><th>Streak</th>
+              <th>Exp W</th><th>Exp L</th><th>Exp PCT</th>
+              <th>PF</th><th>PA</th><th>Diff</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
     <div class="tab-pane fade" id="rosters">Rosters coming soon</div>
     <div class="tab-pane fade" id="mvp">MVP stats coming soon</div>
     <div class="tab-pane fade" id="lvp">LVP stats coming soon</div>
@@ -245,6 +281,37 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(err);
     });
 });
+</script>
+  <script>
+fetch('standings.json')
+  .then(response => response.json())
+  .then(data => {
+    const afcBody = document.querySelector('#afcStandings tbody');
+    const nfcBody = document.querySelector('#nfcStandings tbody');
+
+    data.forEach(team => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${team.team}</td>
+        <td>${team.actual.wins}</td>
+        <td>${team.actual.losses}</td>
+        <td>${team.actual.win_pct.toFixed(3)}</td>
+        <td>${team.actual.gb ?? 0}</td>
+        <td>${team.streak || "-"}</td>
+        <td>${team.expected.wins}</td>
+        <td>${team.expected.losses}</td>
+        <td>${team.expected.win_pct.toFixed(3)}</td>
+        <td>${team.points.for}</td>
+        <td>${team.points.against}</td>
+        <td>${team.points.differential}</td>
+      `;
+      if (team.conference === 'AFC') afcBody.appendChild(row);
+      else if (team.conference === 'NFC') nfcBody.appendChild(row);
+    });
+  })
+  .catch(err => {
+    console.error("Failed to load standings:", err);
+  });
 </script>
 </body>
 </html>

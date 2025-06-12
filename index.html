@@ -577,49 +577,26 @@ function renderStats(category) {
   </div>
 </div>
 <script>
-document.querySelectorAll('.player-link').forEach(link => {
-  link.addEventListener('click', function (e) {
-    e.preventDefault();
-    const playerId = this.getAttribute('data-player');
-    document.querySelector('#leagueTabs button[data-bs-target="#playersTab"]').click();
-    loadPlayerModal(playerId);
-  });
-});
-
-function loadPlayerModal(initials) {
-  fetch('players.json')
-    .then(res => res.json())
-    .then(data => {
-      const player = data.find(p => p.initials === initials);
-      if (!player) return;
-
-      let html = `<h3>${player.name} (${player.initials})</h3>`;
-      html += `<table class="table table-dark table-striped"><thead><tr><th>Week</th><th>OPP</th><th>W/L</th><th>QB</th><th>RB</th><th>WR1</th><th>WR2</th><th>TE</th><th>K</th><th>Total</th></tr></thead><tbody>`;
-
-      player.weeks.forEach(week => {
-        html += `<tr>
-          <td>${week.week}</td>
-          <td>${week.opp}</td>
-          <td>${week.result}</td>
-          <td>${week.qb}</td>
-          <td>${week.rb}</td>
-          <td>${week.wr1}</td>
-          <td>${week.wr2}</td>
-          <td>${week.te}</td>
-          <td>${week.k}</td>
-          <td>${week.total}</td>
-        </tr>`;
-      });
-
-      html += `</tbody></table>`;
-      html += `<h4>Total Points: ${player.totalPoints || 0}</h4>`;
-
-      document.getElementById('playerModalLabel').innerText = `${player.name} (${player.initials})`;
-      document.getElementById('playerModalContent').innerHTML = html;
-      new bootstrap.Modal(document.getElementById('playerModal')).show();
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.player-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const playerId = this.getAttribute('data-player');
+      document.querySelector('[href="#playersTab"]').click(); // trigger tab switch
+      loadPlayerModal(playerId);
     });
-}
-</script>
+  });
+
+  function loadPlayerModal(initials) {
+    fetch('players.json')
+      .then(res => res.json())
+      .then(data => {
+        const player = data.find(p => p.initials === initials);
+        if (!player) return;
+
+        let html = `<h3>${player.name} (${player.initials})</h3>`;
+        html += `<table class="table table-dark table-striped"><thead><tr
+
 
 </body>
 </html>

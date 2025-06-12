@@ -313,5 +313,19 @@ fetch('standings.json')
     console.error("Failed to load standings:", err);
   });
 </script>
+  <script>
+fetch('rosters.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log("Rosters loaded:", data);
+    
+    // Example: access Week 1, Team ES, QB
+    const qb = data["1"]["ES"]["QB"];
+    console.log(`Week ${qb.week} | Team: ${qb.team} | QB: ${qb.player} | Points: ${qb.points}`);
+
+    // You can now use this to build tables, forms, etc.
+  })
+  .catch(error => console.error("Error loading rosters:", error));
+</script>
 </body>
 </html>

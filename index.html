@@ -576,13 +576,19 @@ function renderStats(category) {
     </div>
   </div>
 </div>
-<script>
+
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.player-link').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const playerId = this.getAttribute('data-player');
-      document.querySelector('[href="#playersTab"]').click(); // trigger tab switch
+
+      // Switch to Players tab
+      const tabTrigger = new bootstrap.Tab(document.querySelector('[href="#players"]'));
+      tabTrigger.show();
+
+      // Load the modal
       loadPlayerModal(playerId);
     });
   });
@@ -595,8 +601,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!player) return;
 
         let html = `<h3>${player.name} (${player.initials})</h3>`;
-        html += `<table class="table table-dark table-striped"><thead><tr
+        html += `<table class="table table-dark table-striped"><thead><tr><th>Week</th><th>OPP</th><th>W/L</th><th>QB</th><th>RB</th><th>WR1</th><th>WR2</th><th>TE</th><th>K</th><th>Total</th></tr></thead><tbody>`;
 
+        player.weeks.forEach(week => {
+          html += `<tr>
+            <td>${week.week}</td>
+            <td>${week.opp}</td>
+            <td>${week.result}</td>
+            <td>${week.qb}</td>
+            <td>${week.rb}</td>
+            <td>${week.wr1}</td>
+            <td>${week.wr2}</td>
+            <td>${week.te}</td>
+            <td>${week.k}</td>
+            <td>${week.total}</td>
+          </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        html += `<h4>Total Points: ${player.totalPoints || 0}</h4>`;
+
+        document.getElementById('playerModalLabel').innerText = `${player.name} (${initials})`;
+        document.getElementById('playerModalContent').innerHTML = html;
+        new bootstrap.Modal(document.getElementById('playerModal')).show();
+      });
+  }
+});
+</script>
 
 </body>
 </html>

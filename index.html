@@ -217,7 +217,25 @@ background:
   </div>
 </div>
 
-    <div class="tab-pane fade" id="mvp">MVP stats coming soon</div>
+    <div class="tab-pane fade" id="mvp">
+  <div class="container py-4 text-light">
+    <h2 class="mb-4">MVP Tracker</h2>
+    <table class="table table-bordered table-striped table-dark">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>QB</th><th>Team</th>
+          <th>RB</th><th>Team</th>
+          <th>WR</th><th>Team</th>
+          <th>TE</th><th>Team</th>
+          <th>K</th><th>Team</th>
+        </tr>
+      </thead>
+      <tbody id="mvp-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
     <div class="tab-pane fade" id="lvp">LVP stats coming soon</div>
     <div class="tab-pane fade" id="stats">Stats coming soon</div>
     <div class="tab-pane fade" id="players">Players coming soon</div>
@@ -378,6 +396,30 @@ fetch('rosters.json')
   .catch(err => {
     console.error("Error loading rosters:", err);
     document.getElementById('roster-display').textContent = "Failed to load rosters.";
+  });
+</script>
+
+  <script>
+fetch('mvp.json')
+  .then(res => res.json())
+  .then(data => {
+    const tbody = document.getElementById('mvp-table-body');
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.Week}</td>
+        <td>${row["QB Points"]}</td><td>${row["QB Team"]}</td>
+        <td>${row["RB Points"]}</td><td>${row["RB Team"]}</td>
+        <td>${row["WR Points"]}</td><td>${row["WR Team"]}</td>
+        <td>${row["TE Points"]}</td><td>${row["TE Team"]}</td>
+        <td>${row["K Points"]}</td><td>${row["K Team"]}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(err => {
+    console.error("Failed to load MVP data:", err);
+    document.getElementById("mvp-table-body").innerHTML = "<tr><td colspan='11'>Failed to load MVP stats.</td></tr>";
   });
 </script>
 

@@ -247,82 +247,54 @@ background:
   </div>
 </div>
 
-    <div class="tab-pane fade" id="stats" role="tabpanel">
-  <div class="container py-4 text-light">
-    <h2 class="mb-4">League Stats</h2>
-    <select id="statsDropdown" class="form-select mb-3" onchange="renderStats(this.value)">
-      <option value="team_points_for">Total Points For</option>
-      <option value="team_points_against">Total Points Against</option>
-      <option value="team_point_diff">Point Differential</option>
-      <option value="qb_points">QB Points</option>
-      <option value="rb_points">RB Points</option>
-      <option value="wr_points">WR Points</option>
-      <option value="te_points">TE Points</option>
-      <option value="k_points">Kicker Points</option>
-      <option value="top10_highest_scores">Top 10 Scores</option>
-      <option value="top10_lowest_scores">Lowest 10 Scores</option>
-      <option value="top10_blowouts">Biggest Blowouts</option>
-      <option value="top10_closest_games">Closest Games</option>
-      <option value="most_used_players">Most Used Players</option>
-      <option value="top5_qb">Top 5 QB Games</option>
-      <option value="top5_rb">Top 5 RB Games</option>
-      <option value="top5_wr">Top 5 WR Games</option>
-      <option value="top5_te">Top 5 TE Games</option>
-      <option value="top5_k">Top 5 Kicker Games</option>
-    </select>
-    <table id="statsTable" class="table table-bordered table-striped table-dark">
-      <!-- Dynamic stats content goes here -->
-    </table>
+    <div class="container text-center my-4">
+  <h2>Players</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>AFC</h4>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a href="#" class="player-link" data-player="DV">DV</a>
+        <a href="#" class="player-link" data-player="TP">TP</a>
+        <a href="#" class="player-link" data-player="JW">JW</a>
+        <a href="#" class="player-link" data-player="MW">MW</a>
+        <a href="#" class="player-link" data-player="CW">CW</a>
+        <a href="#" class="player-link" data-player="AH">AH</a>
+        <a href="#" class="player-link" data-player="TQ">TQ</a>
+        <a href="#" class="player-link" data-player="ET">ET</a>
+        <a href="#" class="player-link" data-player="BA">BA</a>
+        <a href="#" class="player-link" data-player="CC">CC</a>
+        <a href="#" class="player-link" data-player="KJ">KJ</a>
+        <a href="#" class="player-link" data-player="BW">BW</a>
+        <a href="#" class="player-link" data-player="PP">PP</a>
+        <a href="#" class="player-link" data-player="PC">PC</a>
+        <a href="#" class="player-link" data-player="BL">BL</a>
+        <a href="#" class="player-link" data-player="MK">MK</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>NFC</h4>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a href="#" class="player-link" data-player="GW">GW</a>
+        <a href="#" class="player-link" data-player="ES">ES</a>
+        <a href="#" class="player-link" data-player="DB">DB</a>
+        <a href="#" class="player-link" data-player="JL">JL</a>
+        <a href="#" class="player-link" data-player="BM">BM</a>
+        <a href="#" class="player-link" data-player="MP">MP</a>
+        <a href="#" class="player-link" data-player="BMc">BMc</a>
+        <a href="#" class="player-link" data-player="BJ">BJ</a>
+        <a href="#" class="player-link" data-player="KK">KK</a>
+        <a href="#" class="player-link" data-player="JQ">JQ</a>
+        <a href="#" class="player-link" data-player="DR">DR</a>
+        <a href="#" class="player-link" data-player="CU">CU</a>
+        <a href="#" class="player-link" data-player="JF">JF</a>
+        <a href="#" class="player-link" data-player="TE">TE</a>
+        <a href="#" class="player-link" data-player="AO">AO</a>
+        <a href="#" class="player-link" data-player="MC">MC</a>
+      </div>
+    </div>
   </div>
 </div>
 
-    <div class="tab-pane fade" id="playersTab" role="tabpanel">
-  <div class="container text-center my-4">
-    <h2>Players</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <h4>AFC</h4>
-        <div class="d-flex flex-wrap justify-content-center gap-2">
-          <a href="#" class="player-link" data-player="GW">GW</a>
-          <a href="#" class="player-link" data-player="ES">ES</a>
-          <a href="#" class="player-link" data-player="DB">DB</a>
-          <a href="#" class="player-link" data-player="JL">JL</a>
-          <a href="#" class="player-link" data-player="BM">BM</a>
-          <a href="#" class="player-link" data-player="MP">MP</a>
-          <a href="#" class="player-link" data-player="BMc">BMc</a>
-          <a href="#" class="player-link" data-player="BJ">BJ</a>
-          <a href="#" class="player-link" data-player="KK">KK</a>
-          <a href="#" class="player-link" data-player="JQ">JQ</a>
-          <a href="#" class="player-link" data-player="DR">DR</a>
-          <a href="#" class="player-link" data-player="CU">CU</a>
-          <a href="#" class="player-link" data-player="JF">JF</a>
-          <a href="#" class="player-link" data-player="TE">TE</a>
-          <a href="#" class="player-link" data-player="AO">AO</a>
-          <a href="#" class="player-link" data-player="MC">MC</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h4>NFC</h4>
-        <div class="d-flex flex-wrap justify-content-center gap-2">
-          <a href="#" class="player-link" data-player="DV">DV</a>
-          <a href="#" class="player-link" data-player="TP">TP</a>
-          <a href="#" class="player-link" data-player="JW">JW</a>
-          <a href="#" class="player-link" data-player="MW">MW</a>
-          <a href="#" class="player-link" data-player="CW">CW</a>
-          <a href="#" class="player-link" data-player="AH">AH</a>
-          <a href="#" class="player-link" data-player="TQ">TQ</a>
-          <a href="#" class="player-link" data-player="ET">ET</a>
-          <a href="#" class="player-link" data-player="BA">BA</a>
-          <a href="#" class="player-link" data-player="CC">CC</a>
-          <a href="#" class="player-link" data-player="KJ">KJ</a>
-          <a href="#" class="player-link" data-player="BW">BW</a>
-          <a href="#" class="player-link" data-player="PP">PP</a>
-          <a href="#" class="player-link" data-player="PC">PC</a>
-          <a href="#" class="player-link" data-player="BL">BL</a>
-          <a href="#" class="player-link" data-player="MK">MK</a>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -628,6 +600,52 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.player-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const playerId = this.getAttribute('data-player');
+      const tabTrigger = new bootstrap.Tab(document.querySelector('[href="#players"]'));
+      tabTrigger.show();
+      loadPlayerModal(playerId);
+    });
+  });
+
+  function loadPlayerModal(initials) {
+    fetch('players.json')
+      .then(res => res.json())
+      .then(data => {
+        const player = data.find(p => p.initials === initials);
+        if (!player) return;
+
+        let html = `<h3>${player.name} (${player.initials})</h3>`;
+        html += `<table class="table table-dark table-striped"><thead><tr><th>Week</th><th>OPP</th><th>W/L</th><th>QB</th><th>RB</th><th>WR1</th><th>WR2</th><th>TE</th><th>K</th><th>Total</th></tr></thead><tbody>`;
+
+        player.weeks.forEach(week => {
+          html += `<tr>
+            <td>${week.week}</td>
+            <td>${week.opp}</td>
+            <td>${week.result}</td>
+            <td>${week.qb}</td>
+            <td>${week.rb}</td>
+            <td>${week.wr1}</td>
+            <td>${week.wr2}</td>
+            <td>${week.te}</td>
+            <td>${week.k}</td>
+            <td>${week.total}</td>
+          </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        html += `<h4>Total Points: ${player.totalPoints || 0}</h4>`;
+
+        document.getElementById('playerModalLabel').innerText = `${player.name} (${initials})`;
+        document.getElementById('playerModalContent').innerHTML = html;
+        new bootstrap.Modal(document.getElementById('playerModal')).show();
+      });
+  }
+});
 
 </body>
 </html>

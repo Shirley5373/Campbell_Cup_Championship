@@ -1,0 +1,20 @@
+{
+  "team_points_for": [],
+  "team_points_against": [],
+  "team_point_diff": [],
+  "qb_points": [],
+  "rb_points": [],
+  "wr_points": [],
+  "te_points": [],
+  "k_points": [],
+  "top10_highest_scores": [],
+  "top10_lowest_scores": [],
+  "top10_blowouts": [],
+  "top10_closest_games": [],
+  "most_used_players": [],
+  "top5_qb": [],
+  "top5_rb": [],
+  "top5_wr": [],
+  "top5_te": [],
+  "top5_k": []
+}

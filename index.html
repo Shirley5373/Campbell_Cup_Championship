@@ -209,7 +209,12 @@ background:
   </div>
 </div>
 
-    <div class="tab-pane fade" id="rosters">Rosters coming soon</div>
+    <div id="rosters-section" class="container text-light">
+  <h2 class="mb-3">Rosters</h2>
+  <select id="week-select" class="form-select mb-3" style="max-width: 200px;"></select>
+  <div id="roster-display"></div>
+</div>
+
     <div class="tab-pane fade" id="mvp">MVP stats coming soon</div>
     <div class="tab-pane fade" id="lvp">LVP stats coming soon</div>
     <div class="tab-pane fade" id="stats">Stats coming soon</div>
@@ -315,17 +320,64 @@ fetch('standings.json')
 </script>
   <script>
 fetch('rosters.json')
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
-    console.log("Rosters loaded:", data);
-    
-    // Example: access Week 1, Team ES, QB
-    const qb = data["1"]["ES"]["QB"];
-    console.log(`Week ${qb.week} | Team: ${qb.team} | QB: ${qb.player} | Points: ${qb.points}`);
+    const weekSelect = document.getElementById('week-select');
+    const display = document.getElementById('roster-display');
 
-    // You can now use this to build tables, forms, etc.
+    // Populate Week dropdown
+    const weeks = Object.keys(data).sort((a, b) => +a - +b);
+    weeks.forEach(w => {
+      const opt = document.createElement('option');
+      opt.value = w;
+      opt.textContent = `Week ${w}`;
+      weekSelect.appendChild(opt);
+    });
+
+    // Initial display
+    renderWeek(data, weeks[0]);
+
+    // Update on week change
+    weekSelect.addEventListener('change', e => {
+      renderWeek(data, e.target.value);
+    });
+
+    function renderWeek(data, week) {
+      const weekData = data[week];
+      display.innerHTML = '';
+
+      for (const team in weekData) {
+        const teamData = weekData[team];
+
+        const card = document.createElement('div');
+        card.className = 'card text-dark bg-light mb-3';
+        card.innerHTML = `
+          <div class="card-header"><strong>${team}</strong> vs ${teamData.OPPONENT.opponent}</div>
+          <div class="card-body">
+            <table class="table table-bordered table-sm mb-2">
+              <thead><tr><th>Position</th><th>Player</th><th>Points</th></tr></thead>
+              <tbody>
+                ${['QB', 'RB', 'WR1', 'WR2', 'TE', 'K'].map(pos => `
+                  <tr>
+                    <td>${pos}</td>
+                    <td>${teamData[pos].player || ''}</td>
+                    <td>${teamData[pos].points}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            <p><strong>Total:</strong> ${teamData.TOTAL.points} pts | <strong>Remaining:</strong> ${teamData.TOTAL["rem."]} players</p>
+          </div>
+        `;
+        display.appendChild(card);
+      }
+    }
   })
-  .catch(error => console.error("Error loading rosters:", error));
+  .catch(err => {
+    console.error("Error loading rosters:", err);
+    document.getElementById('roster-display').textContent = "Failed to load rosters.";
+  });
 </script>
+
 </body>
 </html>

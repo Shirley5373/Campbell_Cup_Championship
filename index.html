@@ -244,6 +244,39 @@ background:
   </div>
 </div>
 
+    <div class="tab-pane fade" id="stats">
+  <div class="container py-4 text-light">
+    <h2 class="mb-4">Stat Breakdown</h2>
+    <div class="mb-3">
+      <label for="statsDropdown" class="form-label">Select Stat Category:</label>
+      <select class="form-select" id="statsDropdown" onchange="renderStats(this.value)">
+        <option value="team_points_for">Total Points For</option>
+        <option value="team_points_against">Total Points Against</option>
+        <option value="team_point_diff">Point Differential</option>
+        <option value="qb_points">QB Points</option>
+        <option value="rb_points">RB Points</option>
+        <option value="wr_points">WR Points</option>
+        <option value="te_points">TE Points</option>
+        <option value="k_points">K Points</option>
+        <option value="top_10_scores">Top 10 Scores</option>
+        <option value="bottom_10_scores">Lowest 10 Scores</option>
+        <option value="top_10_blowouts">Top 10 Blowouts</option>
+        <option value="top_10_closest">Top 10 Closest Games</option>
+        <option value="top_qb">Top 5 QB</option>
+        <option value="top_rb">Top 5 RB</option>
+        <option value="top_wr">Top 5 WR</option>
+        <option value="top_te">Top 5 TE</option>
+        <option value="top_k">Top 5 K</option>
+      </select>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-dark" id="statsTable">
+        <!-- Populated via JS -->
+      </table>
+    </div>
+  </div>
+</div>
+
    <div class="tab-pane fade" id="players" role="tabpanel">
   <div class="container text-center my-4">
     <h2>Players</h2>

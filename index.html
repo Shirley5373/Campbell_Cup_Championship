@@ -111,6 +111,9 @@ background:
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#lvp">LVP</a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#stats">Stats</a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#players">Players</a></li>
+  <li class="nav-item">
+  <a class="nav-link" id="stats-tab" data-bs-toggle="tab" href="#stats" role="tab">Stats</a>
+</li>
 </ul>
 
   <div class="tab-content container-fluid">
@@ -255,7 +258,35 @@ background:
   </div>
 </div>
 
-    <div class="tab-pane fade" id="stats">Stats coming soon</div>
+    <div class="tab-pane fade" id="stats" role="tabpanel">
+  <div class="container py-4 text-light">
+    <h2 class="mb-4">League Stats</h2>
+    <select id="statsDropdown" class="form-select mb-3" onchange="renderStats(this.value)">
+      <option value="team_points_for">Total Points For</option>
+      <option value="team_points_against">Total Points Against</option>
+      <option value="team_point_diff">Point Differential</option>
+      <option value="qb_points">QB Points</option>
+      <option value="rb_points">RB Points</option>
+      <option value="wr_points">WR Points</option>
+      <option value="te_points">TE Points</option>
+      <option value="k_points">Kicker Points</option>
+      <option value="top10_highest_scores">Top 10 Scores</option>
+      <option value="top10_lowest_scores">Lowest 10 Scores</option>
+      <option value="top10_blowouts">Biggest Blowouts</option>
+      <option value="top10_closest_games">Closest Games</option>
+      <option value="most_used_players">Most Used Players</option>
+      <option value="top5_qb">Top 5 QB Games</option>
+      <option value="top5_rb">Top 5 RB Games</option>
+      <option value="top5_wr">Top 5 WR Games</option>
+      <option value="top5_te">Top 5 TE Games</option>
+      <option value="top5_k">Top 5 Kicker Games</option>
+    </select>
+    <table id="statsTable" class="table table-bordered table-striped table-dark">
+      <!-- Dynamic stats content goes here -->
+    </table>
+  </div>
+</div>
+
     <div class="tab-pane fade" id="players">Players coming soon</div>
   </div>
   </div>
@@ -463,6 +494,35 @@ fetch('lvp.json')
     console.error("Failed to load LVP data:", err);
     document.getElementById("lvp-table-body").innerHTML = "<tr><td colspan='11'>Failed to load LVP stats.</td></tr>";
   });
+</script>
+
+  <script>
+let statsData = {};
+
+fetch('data/stats/stats.json') // adjust if path is different
+  .then(res => res.json())
+  .then(data => {
+    statsData = data;
+    renderStats("team_points_for"); // default stat to show
+  });
+
+function renderStats(category) {
+  const table = document.getElementById("statsTable");
+  const data = statsData[category];
+
+  if (!data || data.length === 0) {
+    table.innerHTML = "<tr><td class='text-warning'>No data available for this category.</td></tr>";
+    return;
+  }
+
+  const headers = Object.keys(data[0]);
+  const thead = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead>`;
+  const tbody = `<tbody>${data.map(row => 
+    `<tr>${headers.map(h => `<td>${row[h]}</td>`).join("")}</tr>`
+  ).join("")}</tbody>`;
+
+  table.innerHTML = thead + tbody;
+}
 </script>
 
 </body>

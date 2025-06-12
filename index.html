@@ -92,12 +92,9 @@ background:
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#standings">Standings</a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#rosters">Rosters</a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#mvp">MVP</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#Stats">Stats</a></li>
-  <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#lvp">LVP</a></li>
+  <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#lvp">LVP</a></li> 
+  <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#stats">Stats</a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#players">Players</a></li>
-     <li class="nav-item">
-  <a class="nav-link" id="stats-tab" data-bs-toggle="tab" href="#stats" role="tab">Stats</a>
-</li>
 </ul>
 
 
@@ -247,49 +244,51 @@ background:
   </div>
 </div>
 
-    <div class="container text-center my-4">
-  <h2>Players</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <h4>AFC</h4>
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <a href="#" class="player-link" data-player="DV">DV</a>
-        <a href="#" class="player-link" data-player="TP">TP</a>
-        <a href="#" class="player-link" data-player="JW">JW</a>
-        <a href="#" class="player-link" data-player="MW">MW</a>
-        <a href="#" class="player-link" data-player="CW">CW</a>
-        <a href="#" class="player-link" data-player="AH">AH</a>
-        <a href="#" class="player-link" data-player="TQ">TQ</a>
-        <a href="#" class="player-link" data-player="ET">ET</a>
-        <a href="#" class="player-link" data-player="BA">BA</a>
-        <a href="#" class="player-link" data-player="CC">CC</a>
-        <a href="#" class="player-link" data-player="KJ">KJ</a>
-        <a href="#" class="player-link" data-player="BW">BW</a>
-        <a href="#" class="player-link" data-player="PP">PP</a>
-        <a href="#" class="player-link" data-player="PC">PC</a>
-        <a href="#" class="player-link" data-player="BL">BL</a>
-        <a href="#" class="player-link" data-player="MK">MK</a>
+   <div class="tab-pane fade" id="playersTab" role="tabpanel">
+  <div class="container text-center my-4">
+    <h2>Players</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>AFC</h4>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <a href="#" class="player-link" data-player="DV">DV</a>
+          <a href="#" class="player-link" data-player="TP">TP</a>
+          <a href="#" class="player-link" data-player="JW">JW</a>
+          <a href="#" class="player-link" data-player="MW">MW</a>
+          <a href="#" class="player-link" data-player="CW">CW</a>
+          <a href="#" class="player-link" data-player="AH">AH</a>
+          <a href="#" class="player-link" data-player="TQ">TQ</a>
+          <a href="#" class="player-link" data-player="ET">ET</a>
+          <a href="#" class="player-link" data-player="BA">BA</a>
+          <a href="#" class="player-link" data-player="CC">CC</a>
+          <a href="#" class="player-link" data-player="KJ">KJ</a>
+          <a href="#" class="player-link" data-player="BW">BW</a>
+          <a href="#" class="player-link" data-player="PP">PP</a>
+          <a href="#" class="player-link" data-player="PC">PC</a>
+          <a href="#" class="player-link" data-player="BL">BL</a>
+          <a href="#" class="player-link" data-player="MK">MK</a>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <h4>NFC</h4>
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <a href="#" class="player-link" data-player="GW">GW</a>
-        <a href="#" class="player-link" data-player="ES">ES</a>
-        <a href="#" class="player-link" data-player="DB">DB</a>
-        <a href="#" class="player-link" data-player="JL">JL</a>
-        <a href="#" class="player-link" data-player="BM">BM</a>
-        <a href="#" class="player-link" data-player="MP">MP</a>
-        <a href="#" class="player-link" data-player="BMc">BMc</a>
-        <a href="#" class="player-link" data-player="BJ">BJ</a>
-        <a href="#" class="player-link" data-player="KK">KK</a>
-        <a href="#" class="player-link" data-player="JQ">JQ</a>
-        <a href="#" class="player-link" data-player="DR">DR</a>
-        <a href="#" class="player-link" data-player="CU">CU</a>
-        <a href="#" class="player-link" data-player="JF">JF</a>
-        <a href="#" class="player-link" data-player="TE">TE</a>
-        <a href="#" class="player-link" data-player="AO">AO</a>
-        <a href="#" class="player-link" data-player="MC">MC</a>
+      <div class="col-md-6">
+        <h4>NFC</h4>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <a href="#" class="player-link" data-player="GW">GW</a>
+          <a href="#" class="player-link" data-player="ES">ES</a>
+          <a href="#" class="player-link" data-player="DB">DB</a>
+          <a href="#" class="player-link" data-player="JL">JL</a>
+          <a href="#" class="player-link" data-player="BM">BM</a>
+          <a href="#" class="player-link" data-player="MP">MP</a>
+          <a href="#" class="player-link" data-player="BMc">BMc</a>
+          <a href="#" class="player-link" data-player="BJ">BJ</a>
+          <a href="#" class="player-link" data-player="KK">KK</a>
+          <a href="#" class="player-link" data-player="JQ">JQ</a>
+          <a href="#" class="player-link" data-player="DR">DR</a>
+          <a href="#" class="player-link" data-player="CU">CU</a>
+          <a href="#" class="player-link" data-player="JF">JF</a>
+          <a href="#" class="player-link" data-player="TE">TE</a>
+          <a href="#" class="player-link" data-player="AO">AO</a>
+          <a href="#" class="player-link" data-player="MC">MC</a>
+        </div>
       </div>
     </div>
   </div>

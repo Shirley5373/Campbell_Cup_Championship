@@ -17,7 +17,6 @@
     .navbar {
       background-color: #111;
       border-bottom: 2px solid #FFD700;
-      margin-bottom: 20px;
     }
     .nav-link, .navbar-brand {
       color: #FFD700 !important;
@@ -45,6 +44,7 @@ background:
   height: 100vh;
   text-align: center;
   padding-top: 40px;
+  padding-bottom:80px;
   margin: 0;
   display: block;
 }
@@ -397,11 +397,16 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("schedule.json")
     .then(res => res.json())
     .then(schedule => {
-      const weeks = Object.keys(schedule);
+      const weekLabels = {
+  "Week 15": "WC",
+  "Week 16": "QF",
+  "Week 17": "SF",
+  "Week 18": "Final"
+};
       weeks.forEach(week => {
         const option = document.createElement("option");
         option.value = week;
-        option.textContent = week;
+        option.textContent = weekLabels[week] || week;
         weekSelect.appendChild(option);
       });
 

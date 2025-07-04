@@ -44,7 +44,7 @@ background:
   height: 100vh;
   text-align: center;
   padding-top: 40px;
-  padding-bottom:80px;
+  padding-bottom:100px;
   margin: 0;
   display: block;
 }
@@ -473,12 +473,19 @@ fetch('rosters.json')
 
     // Populate Week dropdown
     const weeks = Object.keys(data).sort((a, b) => +a - +b);
-    weeks.forEach(w => {
-      const opt = document.createElement('option');
-      opt.value = w;
-      opt.textContent = `Week ${w}`;
-      weekSelect.appendChild(opt);
-    });
+    const weekLabels = {
+  "Week 15": "WC",
+  "Week 16": "QF",
+  "Week 17": "SF",
+  "Week 18": "Final"
+};
+
+weeks.forEach(week => {
+  const option = document.createElement("option");
+  option.value = week;
+  option.textContent = weekLabels[week] || week;
+  weekSelect.appendChild(option);
+});
 
     // Initial display
     renderWeek(data, weeks[0]);

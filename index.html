@@ -417,24 +417,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
       weekSelect.addEventListener("change", () => {
   const selectedWeek = weekSelect.value;
-  const matchups = schedule[selectedWeek];
-  matchupList.innerHTML = "";
+ const matchups = schedule[selectedWeek];
+matchupList.innerHTML = "";
 
-  if (!matchups || matchups.length === 0) {
-    matchupList.innerHTML = "<p class='text-warning'>Matchups not available yet.</p>";
-    return;
-  }
+// Only skip rendering if it's a playoff week and no matchups exist
+const playoffWeeks = ["WC", "QF", "SF", "Final"];
+if (playoffWeeks.includes(selectedWeek) && (!matchups || matchups.length === 0)) {
+  matchupList.innerHTML = `<p class="text-center text-warning">Playoff matchups not yet determined.</p>`;
+  return;
+}
 
-  matchups.forEach(([team1, team2]) => {
-    const row = document.createElement("div");
-    row.className = "d-flex justify-content-between border-bottom py-2";
-    row.innerHTML = `
-      <a href="team.html?id=${team1}" class="text-warning text-decoration-none">${team1}</a>
-      <span>vs</span>
-      <a href="team.html?id=${team2}" class="text-warning text-decoration-none">${team2}</a>
-    `;
-    matchupList.appendChild(row);
-  });
+matchups.forEach(([team1, team2]) => {
+  const row = document.createElement("div");
+  row.className = "d-flex justify-content-between border-bottom py-2";
+  row.innerHTML = `
+    <a href="team.html?id=${team1}" class="text-warning text-decoration-none">${team1}</a>
+    <span class="text-warning">vs</span>
+    <a href="team.html?id=${team2}" class="text-warning text-decoration-none">${team2}</a>
+  `;
+  matchupList.appendChild(row);
+});
 });
     })
     .catch(err => {
